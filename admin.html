@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Admin, The ChocoBot</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/admin.html">
+  <meta property="og:url" content="https://www.thechocobot.com/admin.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { background: var(--cream); }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.25rem 0.65rem; border-radius: 9999px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .pill-paid { background: rgba(44, 110, 73, 0.15); color: #2c6e49; }
+    .pill-demo { background: rgba(201, 169, 110, 0.2); color: var(--gold-dark); }
+    .pill-pending { background: rgba(196, 68, 68, 0.12); color: #c44; }
+  </style>
+</head>
+<body class="page-curtain">
+
+  <!-- Custom minimal header (no public nav for admin) -->
+  <header class="site-header" style="background:white">
+    <div class="container-wide flex items-center justify-between py-4">
+      <a href="index.html" class="brand-wordmark flex items-center gap-2">
+        <span class="brand-mono">THE</span><span>ChocoBot</span><span class="dot">.</span>
+      </a>
+      <p class="text-xs tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Studio Admin</p>
+    </div>
+  </header>
+
+  <main class="container-wide py-10">
+
+    <!-- Top stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <div class="bg-white rounded-2xl p-5" style="border:1px solid var(--line)">
+        <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Orders today</p>
+        <p class="serif text-3xl mt-2" style="color:var(--cocoa)" id="stat-today">-</p>
+      </div>
+      <div class="bg-white rounded-2xl p-5" style="border:1px solid var(--line)">
+        <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">All orders</p>
+        <p class="serif text-3xl mt-2" style="color:var(--cocoa)" id="stat-total">-</p>
+      </div>
+      <div class="bg-white rounded-2xl p-5" style="border:1px solid var(--line)">
+        <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Subscribers</p>
+        <p class="serif text-3xl mt-2" style="color:var(--cocoa)" id="stat-subs">-</p>
+      </div>
+      <div class="bg-white rounded-2xl p-5" style="border:1px solid var(--line)">
+        <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Atelier enquiries</p>
+        <p class="serif text-3xl mt-2" style="color:var(--cocoa)" id="stat-enq">-</p>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <section class="mb-10">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-4">
+        <div>
+          <h2 class="serif text-3xl" style="color:var(--cocoa)">Orders</h2>
+          <p class="text-sm" style="color:var(--muted)">Local storage view. Production wires this to a real backend (Firebase / Supabase / Apps Script + Sheet).</p>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" id="export-orders" class="btn btn-secondary btn-sm">Export CSV</button>
+          <button type="button" id="clear-orders" class="btn btn-secondary btn-sm" style="border-color:#c44;color:#c44">Clear all</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl overflow-x-auto" style="border:1px solid var(--line)">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Pincode</th>
+              <th>Total</th>
+              <th>Code</th>
+              <th>Status</th>
+              <th>Placed</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+            <tr><td colspan="8" class="text-center py-6" style="color:var(--muted)">No orders yet, place a test order in the storefront to see it appear here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBERS -->
+    <section class="mb-10">
+      <div class="flex items-end justify-between mb-4">
+        <div>
+          <h2 class="serif text-3xl" style="color:var(--cocoa)">Inner Circle subscribers</h2>
+          <p class="text-sm" style="color:var(--muted)">From the welcome popup.</p>
+        </div>
+        <button type="button" id="export-subs" class="btn btn-secondary btn-sm">Export CSV</button>
+      </div>
+      <div class="bg-white rounded-2xl overflow-x-auto" style="border:1px solid var(--line)">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Birthday</th>
+              <th>Welcome code</th>
+              <th>Joined</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="subs-tbody">
+            <tr><td colspan="6" class="text-center py-6" style="color:var(--muted)">No subscribers yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ENQUIRIES (Atelier) -->
+    <section class="mb-10">
+      <div class="flex items-end justify-between mb-4">
+        <div>
+          <h2 class="serif text-3xl" style="color:var(--cocoa)">Atelier enquiries</h2>
+          <p class="text-sm" style="color:var(--muted)">From events.html and custom-orders.html.</p>
+        </div>
+        <button type="button" id="export-enq" class="btn btn-secondary btn-sm">Export CSV</button>
+      </div>
+      <div class="bg-white rounded-2xl overflow-x-auto" style="border:1px solid var(--line)">
+        <table class="admin-table">
+          <thead>
+            <tr><th>Name</th><th>Phone</th><th>Type</th><th>Qty</th><th>Date</th><th>Budget</th><th>Received</th></tr>
+          </thead>
+          <tbody id="enq-tbody">
+            <tr><td colspan="7" class="text-center py-6" style="color:var(--muted)">No enquiries yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BACKEND NOTE -->
+    <section class="bg-white rounded-2xl p-6 md:p-8" style="border:1px solid var(--line)">
+      <h3 class="serif text-2xl" style="color:var(--cocoa)">Going live · How to wire a real backend</h3>
+      <p class="mt-3 text-sm" style="color:var(--muted);line-height:1.65">
+        This admin reads from <code style="background:var(--cream);padding:2px 6px;border-radius:4px">localStorage</code> on this browser only. For multi-device access in production:
+      </p>
+      <ol class="mt-4 space-y-2 text-sm" style="color:var(--charcoal);line-height:1.65">
+        <li><strong style="color:var(--cocoa)">1.</strong> Create a Google Sheet, set up a Google Apps Script to accept POSTs and append rows.</li>
+        <li><strong style="color:var(--cocoa)">2.</strong> In <code style="background:var(--cream);padding:2px 6px;border-radius:4px">js/welcome.js → saveSubscriber()</code>, replace the local stub with <code style="background:var(--cream);padding:2px 6px;border-radius:4px">fetch(SHEET_URL, ...)</code>.</li>
+        <li><strong style="color:var(--cocoa)">3.</strong> In <code style="background:var(--cream);padding:2px 6px;border-radius:4px">js/razorpay-checkout.js → saveOrder()</code>, do the same.</li>
+        <li><strong style="color:var(--cocoa)">4.</strong> Replace this admin page with a sheet view, a Notion database, or a simple Firebase/Supabase dashboard. The simplest: just open the Google Sheet directly on your phone.</li>
+      </ol>
+      <p class="mt-4 text-sm" style="color:var(--muted);line-height:1.65">
+        For payment verification (HMAC signature check), you'll need a small serverless function, Vercel, Netlify, or Firebase Functions all work. ~30 lines of code, free tier covers a small bakery comfortably.
+      </p>
+    </section>
+
+  </main>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    function rs(key) { try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) { return []; } }
+    function rs1(key) { try { return JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) { return {}; } }
+    function fmtPrice(n) { return new Intl.NumberFormat("en-IN", { style:"currency", currency:"INR", maximumFractionDigits:0 }).format(n); }
+    function fmtDate(iso) { if (!iso) return "-"; const d = new Date(iso); return d.toLocaleString("en-IN", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }); }
+    function escapeHTML(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+    function csv(rows) {
+      return rows.map(r => r.map(c => {
+        if (c == null) return "";
+        const s = String(c).replace(/"/g, '""');
+        return /[",\n]/.test(s) ? `"${s}"` : s;
+      }).join(",")).join("\n");
+    }
+    function download(name, content) {
+      const blob = new Blob([content], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = name; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function render() {
+      const orders = rs("chocobot.orders.v1");
+      const subs = rs("chocobot.subscriber.v1");
+      const enq = rs("chocobot.enquiries.v1");
+
+      // Stats
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("stat-today").textContent = orders.filter(o => (o.created_at || "").startsWith(today)).length;
+      document.getElementById("stat-total").textContent = orders.length;
+      document.getElementById("stat-subs").textContent = subs.length;
+      document.getElementById("stat-enq").textContent = enq.length;
+
+      // Orders
+      const ob = document.getElementById("orders-tbody");
+      if (orders.length === 0) {
+        ob.innerHTML = `<tr><td colspan="8" class="text-center py-6" style="color:var(--muted)">No orders yet.</td></tr>`;
+      } else {
+        ob.innerHTML = orders.slice().reverse().map(o => {
+          const items = (o.items || []).map(i => {
+            const p = window.findProduct(i.id);
+            return `${p ? p.name : i.id} ×${i.qty}`;
+          }).join(", ");
+          const status = o.payment_method === "razorpay"
+            ? `<span class="pill pill-paid">Paid</span>`
+            : `<span class="pill pill-demo">Demo</span>`;
+          return `<tr>
+            <td style="font-family:monospace;font-size:11px">${escapeHTML(o.order_id || "")}</td>
+            <td>
+              <strong>${escapeHTML(o.name || "")}</strong><br>
+              <span class="text-xs" style="color:var(--muted)">${escapeHTML(o.phone || "")} · ${escapeHTML(o.email || "")}</span>
+            </td>
+            <td class="text-xs">${escapeHTML(items)}</td>
+            <td style="font-family:monospace">${escapeHTML(o.pincode || "")}</td>
+            <td><strong>${fmtPrice(o.amount || o.total || 0)}</strong></td>
+            <td>${o.discount_code ? `<span style="font-family:monospace;font-size:11px">${escapeHTML(o.discount_code)}</span>` : "-"}</td>
+            <td>${status}</td>
+            <td class="text-xs">${fmtDate(o.created_at)}</td>
+          </tr>`;
+        }).join("");
+      }
+
+      // Subscribers
+      const sb = document.getElementById("subs-tbody");
+      if (subs.length === 0) {
+        sb.innerHTML = `<tr><td colspan="6" class="text-center py-6" style="color:var(--muted)">No subscribers yet.</td></tr>`;
+      } else {
+        sb.innerHTML = subs.slice().reverse().map(s => `
+          <tr>
+            <td>${escapeHTML(s.email)}</td>
+            <td style="font-family:monospace">${escapeHTML(s.phone || "")}</td>
+            <td>${escapeHTML(s.birthday || "-")}</td>
+            <td><span style="font-family:monospace;font-size:11px">${escapeHTML(s.code || "")}</span></td>
+            <td class="text-xs">${fmtDate(s.joined_at)}</td>
+            <td class="text-xs" style="color:var(--muted)">${escapeHTML(s.source || "")}</td>
+          </tr>`).join("");
+      }
+
+      // Enquiries
+      const eb = document.getElementById("enq-tbody");
+      if (enq.length === 0) {
+        eb.innerHTML = `<tr><td colspan="7" class="text-center py-6" style="color:var(--muted)">No enquiries yet.</td></tr>`;
+      } else {
+        eb.innerHTML = enq.slice().reverse().map(e => `
+          <tr>
+            <td><strong>${escapeHTML(e.name)}</strong><br><span class="text-xs" style="color:var(--muted)">${escapeHTML(e.email || "")}</span></td>
+            <td style="font-family:monospace">${escapeHTML(e.phone)}</td>
+            <td>${escapeHTML(e.type)}</td>
+            <td>${escapeHTML(e.quantity || "")}</td>
+            <td>${escapeHTML(e.date || "")}</td>
+            <td>${escapeHTML(e.budget || "-")}</td>
+            <td class="text-xs">${fmtDate(e.created_at)}</td>
+          </tr>`).join("");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      render();
+      document.body.classList.add("shown");
+
+      // Wire saveOrder (used by razorpay-checkout.js stub) to localStorage
+      // The stub in razorpay-checkout.js already console.logs, also store here
+      // so admin shows them. We hook by patching localStorage events.
+      // Simpler: redefine window saveOrder to write to chocobot.orders.v1
+      window.persistOrder = function (record) {
+        const arr = rs("chocobot.orders.v1");
+        arr.push(record);
+        localStorage.setItem("chocobot.orders.v1", JSON.stringify(arr));
+        render();
+      };
+
+      // Listen for cross-tab storage updates
+      window.addEventListener("storage", () => render());
+
+      // CSV exports
+      document.getElementById("export-orders").addEventListener("click", () => {
+        const orders = rs("chocobot.orders.v1");
+        if (orders.length === 0) { alert("No orders to export."); return; }
+        const headers = ["order_id","name","phone","email","address1","city","state","pincode","items","amount","discount_code","payment_method","created_at"];
+        const rows = [headers, ...orders.map(o => [
+          o.order_id, o.name, o.phone, o.email, o.address1, o.city, o.state, o.pincode,
+          (o.items||[]).map(i => `${i.id}×${i.qty}`).join("; "),
+          o.amount || o.total, o.discount_code || "", o.payment_method, o.created_at
+        ])];
+        download(`chocobot-orders-${new Date().toISOString().slice(0,10)}.csv`, csv(rows));
+      });
+
+      document.getElementById("export-subs").addEventListener("click", () => {
+        const subs = rs("chocobot.subscriber.v1");
+        if (subs.length === 0) { alert("No subscribers to export."); return; }
+        const headers = ["email","phone","birthday","code","joined_at","source"];
+        const rows = [headers, ...subs.map(s => [s.email, s.phone, s.birthday || "", s.code, s.joined_at, s.source])];
+        download(`chocobot-subscribers-${new Date().toISOString().slice(0,10)}.csv`, csv(rows));
+      });
+
+      document.getElementById("export-enq").addEventListener("click", () => {
+        const enq = rs("chocobot.enquiries.v1");
+        if (enq.length === 0) { alert("No enquiries to export."); return; }
+        const headers = ["name","phone","email","type","quantity","date","budget","notes","created_at"];
+        const rows = [headers, ...enq.map(e => [e.name, e.phone, e.email, e.type, e.quantity, e.date, e.budget || "", e.notes || "", e.created_at])];
+        download(`chocobot-enquiries-${new Date().toISOString().slice(0,10)}.csv`, csv(rows));
+      });
+
+      document.getElementById("clear-orders").addEventListener("click", () => {
+        if (!confirm("Permanently delete all orders from local storage?")) return;
+        localStorage.removeItem("chocobot.orders.v1");
+        render();
+      });
+    });
+  </script>
+</body>
+</html>

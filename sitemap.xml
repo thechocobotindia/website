@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://www.thechocobot.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Menu + Product -->
+  <url><loc>https://www.thechocobot.com/menu.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.thechocobot.com/product.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- Order paths -->
+  <url><loc>https://www.thechocobot.com/place-order.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.thechocobot.com/checkout.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.thechocobot.com/track.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.thechocobot.com/builder.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Three doors -->
+  <url><loc>https://www.thechocobot.com/classes.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.thechocobot.com/events.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.thechocobot.com/custom-orders.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Brand + content -->
+  <url><loc>https://www.thechocobot.com/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.thechocobot.com/inner-circle.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.thechocobot.com/recipes.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.thechocobot.com/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.thechocobot.com/blog/eggless-by-design.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.thechocobot.com/blog/brown-butter.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Contact + notes -->
+  <url><loc>https://www.thechocobot.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.thechocobot.com/faq.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+</urlset>

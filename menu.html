@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What I bake, TheChocoBot</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/menu.html">
+  <meta property="og:url" content="https://www.thechocobot.com/menu.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="The full TheChocoBot menu, handmade chocolates, cookies, cakes, brownies and hampers. Filter by category. Shipping pan-India for shelf-stable items.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- HERO STRIP -->
+  <section class="hero">
+    <div class="container-wide pt-12 pb-10 md:pt-16 md:pb-12 fade-in">
+      <span class="section-eyebrow">The menu</span>
+      <h1 class="hero-headline serif mt-3" style="font-size: clamp(2rem, 5vw, 3.5rem)">
+        Everything <em>I bake</em>.
+      </h1>
+      <p class="section-sub mt-3 max-w-2xl">
+        Chocolates, cookies, cakes, brownies, hampers. Shelf-stable goodies ship pan-India. Fresh cakes & desserts are Delhi NCR only, labelled so you'll know.
+      </p>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <section class="sticky z-30 py-4 border-b" style="top:65px; background:rgba(255,248,236,0.92); backdrop-filter: blur(10px); border-color: var(--line)">
+    <div class="container-wide flex items-center gap-2 overflow-x-auto" id="chip-bar">
+      <!-- chips injected by JS -->
+    </div>
+  </section>
+
+  <!-- PRODUCTS GRID -->
+  <section class="section-tight">
+    <div class="container-wide">
+      <div id="results-meta" class="mb-5 text-sm" style="color:var(--muted)"></div>
+      <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- injected -->
+      </div>
+      <div id="empty" class="hidden text-center py-16">
+        <p class="text-5xl mb-3">🤔</p>
+        <p class="serif text-2xl" style="color:var(--cocoa)">Nothing here yet.</p>
+        <p class="mt-2" style="color:var(--muted)">Try another category, or chat with me on WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY ZONE CHECK -->
+  <section class="section-tight" style="background:var(--cream)">
+    <div class="container-narrow text-center fade-in">
+      <span class="section-eyebrow">Check your zone</span>
+      <h2 class="serif text-3xl md:text-4xl mt-2" style="color:var(--cocoa)">Where am I sending this?</h2>
+      <p class="mt-3" style="color:var(--muted)">Punch in your pincode and I'll tell you what's possible.</p>
+      <form id="pincode-form" class="mt-6 max-w-md mx-auto flex flex-col sm:flex-row gap-2" novalidate>
+        <input type="text" inputmode="numeric" pattern="\d{6}" maxlength="6" id="pincode-input" placeholder="e.g. 110001" required
+          class="flex-1 px-4 py-3 bg-white border-2 rounded-full text-base focus:outline-none"
+          style="border-color: var(--line); color: var(--charcoal)">
+        <button type="submit" class="btn btn-primary">Check</button>
+      </form>
+      <p id="pincode-result" class="mt-4 text-sm font-medium hidden"></p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("product-grid");
+      const chipBar = document.getElementById("chip-bar");
+      const meta = document.getElementById("results-meta");
+      const empty = document.getElementById("empty");
+
+      // Initial category from URL
+      let activeCat = window.urlParam("cat") || "all";
+      if (!window.CATEGORIES.find(c => c.id === activeCat)) activeCat = "all";
+
+      function renderChips() {
+        chipBar.innerHTML = window.CATEGORIES.map(c => `
+          <button type="button" data-cat="${c.id}" class="chip ${c.id === activeCat ? 'active' : ''}">${c.name}</button>
+        `).join("");
+        chipBar.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", () => {
+            activeCat = btn.dataset.cat;
+            const url = new URL(location.href);
+            if (activeCat === "all") url.searchParams.delete("cat");
+            else url.searchParams.set("cat", activeCat);
+            history.replaceState(null, "", url.toString());
+            renderChips();
+            renderGrid();
+          });
+        });
+      }
+
+      function renderGrid() {
+        const list = window.productsByCategory(activeCat);
+        const catName = window.CATEGORIES.find(c => c.id === activeCat)?.name || "Everything";
+        meta.textContent = `${list.length} ${list.length === 1 ? 'item' : 'items'} · ${catName}`;
+        if (list.length === 0) {
+          grid.innerHTML = "";
+          empty.classList.remove("hidden");
+        } else {
+          empty.classList.add("hidden");
+          window.renderProducts(grid, list);
+        }
+      }
+
+      renderChips();
+      renderGrid();
+
+      // Pincode form
+      const form = document.getElementById("pincode-form");
+      const input = document.getElementById("pincode-input");
+      const result = document.getElementById("pincode-result");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const res = window.Pincode.check(input.value);
+        result.textContent = res.message;
+        result.classList.remove("hidden");
+        result.style.color = res.ok
+          ? (res.zone === "delhi_ncr" ? "#2c6e49" : "var(--cocoa)")
+          : "#c44";
+      });
+    });
+  </script>
+
+</body>
+</html>

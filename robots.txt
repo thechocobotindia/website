@@ -1,0 +1,16 @@
+# TheChocoBot · robots.txt
+# Updated 2026-05-19
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /checkout.html
+Disallow: /404.html
+Disallow: /js/
+Disallow: /ZOMATO MENU/
+
+# Sitemap
+Sitemap: https://www.thechocobot.com/sitemap.xml
+
+# Be kind to crawlers
+Crawl-delay: 1

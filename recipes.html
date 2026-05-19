@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Recipe Vault, TheChocoBot · For the Inner Circle</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/recipes.html">
+  <meta property="og:url" content="https://www.thechocobot.com/recipes.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="A small, locked library of Gunjan's actual eggless recipes. Inner Circle members get the key.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero hero-stage" data-beans="6">
+    <div class="container-wide pt-12 pb-8 md:pt-16 md:pb-10 text-center">
+      <p data-enter="1" class="eyebrow justify-center"><span class="rule"></span>Vol. V · The Vault<span class="rule"></span></p>
+      <h1 data-enter="2" class="section-title-xl mt-4">
+        Recipes I actually<br>
+        <em>use.</em>
+      </h1>
+      <p data-enter="3" class="mt-5 text-lg" style="color:var(--muted);max-width:38rem;margin:1.25rem auto 0;line-height:1.6">
+        A small, slowly growing library of my real eggless recipes. The ones on my counter at 6am. Ratios, technique notes, and the small things I learned the hard way. Inner Circle members get the key.
+      </p>
+    </div>
+  </section>
+
+  <!-- UNLOCK BANNER (shown when locked) -->
+  <section id="lock-banner" class="section-tight">
+    <div class="container-narrow">
+      <div class="inner-circle-band text-center" style="border-radius:24px">
+        <p class="text-[10px] tracking-[0.3em] uppercase" style="color:var(--gold)">Locked</p>
+        <h2 class="serif mt-4" style="font-size:clamp(1.65rem,3vw,2.25rem);color:var(--cream);line-height:1.2;max-width:32rem;margin:0 auto">
+          The vault opens for Inner Circle members.<br>
+          <em style="color:var(--gold)">Two recipes a month.</em>
+        </h2>
+        <p class="mt-4 text-sm" style="color:rgba(250,243,224,0.78);max-width:30rem;margin:1rem auto 0;line-height:1.55">
+          Drop your email + birthday, get the key in your inbox. Plus 10% off your first order. Unsubscribe anytime.
+        </p>
+        <button type="button" id="open-join" class="btn btn-gold btn-lg mt-6">Get the key</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNLOCKED CONFIRMATION (hidden until member) -->
+  <section id="unlocked-banner" class="section-tight hidden">
+    <div class="container-narrow">
+      <div class="text-center p-6 rounded-2xl" style="background:rgba(201, 169, 110, 0.12);border:1px solid var(--gold)">
+        <p class="serif text-xl" style="color:var(--cocoa)">✦ Welcome to the vault.</p>
+        <p class="mt-1 text-sm" style="color:var(--muted)">All recipes below are unlocked. New ones added on the 1st &amp; 15th.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECIPES GRID -->
+  <section class="section-tight">
+    <div class="container-wide">
+      <div class="flex items-end justify-between mb-8 reveal">
+        <div>
+          <p class="eyebrow"><span class="rule"></span>The library</p>
+          <h2 class="serif mt-3" style="font-size:clamp(1.65rem,3vw,2.25rem);color:var(--cocoa)">Six recipes in the vault.</h2>
+        </div>
+        <p class="text-xs tracking-[0.18em] uppercase font-semibold" style="color:var(--gold-dark)">+ 2 next month</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="recipes-grid">
+        <!-- Locked (peek) recipe -->
+        <article class="recipe-card" data-recipe="brown-butter">
+          <div class="recipe-card-image"><img src="images/products/cookies/cookies-01-chocchip.jpg" alt=""></div>
+          <div class="recipe-card-body">
+            <p class="recipe-card-meta">Cookie · 45 min</p>
+            <h3 class="recipe-card-title">The Brown Butter Cookie</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted);line-height:1.55">My base recipe. The one every cookie tin descends from. 280g cookies, 12 minutes at 175°C.</p>
+          </div>
+          <div class="recipe-lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Locked, Inner Circle</p>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-recipe="pistachio-kunafa">
+          <div class="recipe-card-image"><img src="images/products/brownies/brownies-02-stack.jpg" alt=""></div>
+          <div class="recipe-card-body">
+            <p class="recipe-card-meta">Brownie · 1 hr</p>
+            <h3 class="recipe-card-title">Pistachio Kunafa Brownie</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted);line-height:1.55">The viral one, every layer broken down: brownie base, pistachio cream, the kunafa crisp on top.</p>
+          </div>
+          <div class="recipe-lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Locked, Inner Circle</p>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-recipe="tres-leches">
+          <div class="recipe-card-image"><img src="images/products/cakes/cakes-05-red-velvet-slice.jpg" alt=""></div>
+          <div class="recipe-card-body">
+            <p class="recipe-card-meta">Cake · 2 hr (mostly waiting)</p>
+            <h3 class="recipe-card-title">Eggless Vanilla Tres Leches</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted);line-height:1.55">The sponge formula that holds the three-milk soak without collapsing. Years of trial and error.</p>
+          </div>
+          <div class="recipe-lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Locked, Inner Circle</p>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-recipe="biscoff-cookie">
+          <div class="recipe-card-image"><img src="images/products/cookies/cookies-02-stack.jpg" alt=""></div>
+          <div class="recipe-card-body">
+            <p class="recipe-card-meta">Cookie · 50 min</p>
+            <h3 class="recipe-card-title">Biscoff Cookies</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted);line-height:1.55">A 24-hour cold rest, crushed Biscoff folded in, a swirl of spread on top. The most-asked recipe at the studio.</p>
+          </div>
+          <div class="recipe-lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Locked, Inner Circle</p>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-recipe="red-velvet">
+          <div class="recipe-card-image"><img src="images/products/cakes/cakes-04-red-velvet.jpg" alt=""></div>
+          <div class="recipe-card-body">
+            <p class="recipe-card-meta">Cake · 1 hr 30 min</p>
+            <h3 class="recipe-card-title">Eggless Red Velvet (1940s style)</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted);line-height:1.55">The original ratio, not the food-colour bomb you find online. Cocoa-forward, with proper cream cheese frosting.</p>
+          </div>
+          <div class="recipe-lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Locked, Inner Circle</p>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-recipe="banana-walnut">
+          <div class="recipe-card-image"><img src="images/products/cookies/cookies-04-fresh-baked.jpg" alt=""></div>
+          <div class="recipe-card-body">
+            <p class="recipe-card-meta">Loaf · 1 hr</p>
+            <h3 class="recipe-card-title">Banana Chocolate Walnut Loaf</h3>
+            <p class="mt-2 text-sm" style="color:var(--muted);line-height:1.55">Very ripe bananas, brown butter, the technique that keeps it moist for five days. My favourite weeknight bake.</p>
+          </div>
+          <div class="recipe-lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Locked, Inner Circle</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE TASTER (always unlocked) -->
+  <section class="section" style="background:var(--cream)">
+    <div class="container-narrow reveal">
+      <p class="eyebrow"><span class="rule"></span>A taster (free, always)</p>
+      <h2 class="serif mt-3" style="font-size:clamp(1.65rem,3vw,2.25rem);color:var(--cocoa)">My five-minute eggless cookie.</h2>
+      <p class="mt-4 text-lg" style="color:var(--charcoal);line-height:1.75">
+        Not a real cookie. A "I need something sweet right now" cookie. One bowl, one fork, microwave only.
+      </p>
+      <div class="mt-6 bg-white rounded-2xl p-6 md:p-8" style="border:1px solid var(--line)">
+        <p class="serif text-lg" style="color:var(--cocoa)">Ingredients (makes 1)</p>
+        <ul class="mt-3 space-y-1 text-sm" style="color:var(--charcoal);line-height:1.6">
+          <li>1 tbsp melted butter</li>
+          <li>1 tbsp brown sugar</li>
+          <li>1 tsp milk</li>
+          <li>¼ tsp vanilla</li>
+          <li>3 tbsp flour</li>
+          <li>1 tbsp dark chocolate chunks</li>
+          <li>A pinch of salt</li>
+        </ul>
+        <p class="serif text-lg mt-5" style="color:var(--cocoa)">Method</p>
+        <ol class="mt-3 space-y-2 text-sm list-decimal pl-5" style="color:var(--charcoal);line-height:1.6">
+          <li>Mix the wet (butter + sugar + milk + vanilla) in a small mug until smooth.</li>
+          <li>Stir in the dry (flour + salt). Don't over-mix; you'll get a thick cookie dough.</li>
+          <li>Press in the chocolate chunks. Microwave 40 seconds.</li>
+          <li>Eat with a fork while the chocolate is still molten. Two if you're being honest.</li>
+        </ol>
+        <p class="mt-5 text-xs italic" style="color:var(--muted)">
+          The real recipes in the vault use cultured butter, a 24-hour cold rest, and a 12-minute oven bake. This is the fun cousin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA AT BOTTOM -->
+  <section class="section">
+    <div class="container-narrow text-center reveal">
+      <p class="eyebrow justify-center"><span class="rule"></span>Get the vault key<span class="rule"></span></p>
+      <h2 class="section-title-xl mt-4">Two real recipes a month.</h2>
+      <p class="mt-5 text-lg" style="color:var(--muted);max-width:32rem;margin:1rem auto 0;line-height:1.6">
+        Plus the Inner Circle letter, early launches, and a small birthday surprise.
+      </p>
+      <button type="button" onclick="window.showWelcomeOffer && window.showWelcomeOffer()" class="btn btn-primary btn-lg mt-6">Join the Inner Circle</button>
+    </div>
+  </section>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Unlock state: user is "in" if they have a welcome code OR if subscriber record exists
+      function isMember() {
+        try {
+          const w = JSON.parse(localStorage.getItem("chocobot.welcome.v2") || "{}");
+          if (w.code) return true;
+          const subs = JSON.parse(localStorage.getItem("chocobot.subscriber.v1") || "[]");
+          return subs.length > 0;
+        } catch (e) { return false; }
+      }
+
+      function applyState() {
+        const member = isMember();
+        document.getElementById("lock-banner").classList.toggle("hidden", member);
+        document.getElementById("unlocked-banner").classList.toggle("hidden", !member);
+        document.querySelectorAll(".recipe-card").forEach(c => {
+          c.classList.toggle("is-locked", !member);
+          c.querySelector(".recipe-lock-overlay").style.display = member ? "none" : "flex";
+        });
+      }
+      applyState();
+
+      // Triggering join from the locked banner
+      document.getElementById("open-join").addEventListener("click", () => {
+        if (window.showWelcomeOffer) window.showWelcomeOffer();
+      });
+
+      // Re-check state when storage changes (welcome popup completes)
+      window.addEventListener("storage", applyState);
+      // Also poll lightly since the popup mutates same-tab localStorage without firing storage events
+      setInterval(applyState, 1500);
+
+      // Tap on an unlocked recipe → friendly "coming soon" until real recipe HTML is added
+      document.querySelectorAll(".recipe-card").forEach(card => {
+        card.addEventListener("click", () => {
+          if (card.classList.contains("is-locked")) return;
+          alert("Full recipe arriving in your inbox with the next Inner Circle letter. (When the backend is wired, this opens the recipe page.)");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

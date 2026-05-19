@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place an order, TheChocoBot by Gunjan Chopra</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/place-order.html">
+  <meta property="og:url" content="https://www.thechocobot.com/place-order.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="Place a quick order with TheChocoBot. Fill the form and Gunjan will confirm on WhatsApp.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero hero-stage" data-beans="6">
+    <div class="container-wide pt-12 pb-8 md:pt-16 md:pb-10 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7">
+        <p data-enter="1" class="eyebrow"><span class="rule"></span>Place an order</p>
+        <h1 data-enter="2" class="section-title-xl mt-4">
+          Tell me what<br><em>you're craving.</em>
+        </h1>
+        <p data-enter="3" class="mt-5 text-lg" style="color:var(--muted);max-width:36rem;line-height:1.65">
+          Quick form for ordering off the menu. For custom cakes, dessert tables, hampers and corporate work, use the <a href="custom-orders.html" class="underline" style="color:var(--cocoa)">custom orders form</a> instead.
+        </p>
+        <p data-enter="4" class="mt-4 text-sm" style="color:var(--muted)">
+          Or <a id="po-wa" href="#" target="_blank" rel="noopener" class="underline" style="color:var(--cocoa)">WhatsApp Gunjan</a> directly, usually fastest.
+        </p>
+      </div>
+      <div data-enter="5" class="lg:col-span-5">
+        <div class="image-mask">
+          <img src="images/products/cookies/cookies-02-stack.jpg" alt="A cookie tin from TheChocoBot" class="w-full rounded-3xl shadow-xl" style="aspect-ratio:4/5;object-fit:cover" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="section-tight">
+    <div class="container-narrow">
+      <div class="bg-white rounded-3xl p-6 md:p-10 reveal" style="border:1px solid var(--line)">
+        <p class="eyebrow"><span class="rule"></span>Order form</p>
+        <h2 class="serif mt-3" style="font-size:clamp(1.6rem,3vw,2.25rem);color:var(--cocoa);line-height:1.1">Quick &amp; simple.</h2>
+        <p class="mt-2 text-sm" style="color:var(--muted)">Your details land in Gunjan's inbox. She'll WhatsApp you to confirm price, delivery and payment.</p>
+
+        <form id="order-form" class="mt-7 grid grid-cols-1 md:grid-cols-2 gap-5" novalidate>
+          <div class="field">
+            <label class="field-label" for="po-name">Your name <span class="req">*</span></label>
+            <input id="po-name" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label class="field-label" for="po-phone">Phone (WhatsApp) <span class="req">*</span></label>
+            <input id="po-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91 …">
+          </div>
+          <div class="field md:col-span-2">
+            <label class="field-label" for="po-email">Email <span class="req">*</span></label>
+            <input id="po-email" name="email" type="email" required autocomplete="email">
+          </div>
+
+          <div class="field md:col-span-2">
+            <label class="field-label" for="po-items">What would you like to order? <span class="req">*</span></label>
+            <textarea id="po-items" name="items" rows="4" required placeholder="e.g. 1 × Viral 7'' Cookie Tin, 1 × Nutella brownies (pack of 6), 1 × Belgian chocolate cake (500g)"></textarea>
+            <p class="text-xs" style="color:var(--muted)">Browse the <a href="menu.html" class="underline" style="color:var(--cocoa)">menu</a> first if you need a refresher.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="po-date">Delivery / pickup date <span class="req">*</span></label>
+            <input id="po-date" name="date_needed" type="date" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="po-mode">Delivery or pickup <span class="req">*</span></label>
+            <select id="po-mode" name="delivery" required>
+              <option value="">Pick one</option>
+              <option value="Delivery, Delhi NCR">Delivery, Delhi NCR</option>
+              <option value="Pickup at Vikaspuri">Pickup at Vikaspuri studio</option>
+              <option value="Ship pan-India (shelf-stable only)">Ship pan-India (cookies, brownies, hampers)</option>
+            </select>
+          </div>
+
+          <div class="field md:col-span-2">
+            <label class="field-label" for="po-address">Delivery address (if applicable)</label>
+            <input id="po-address" name="address" type="text" placeholder="House, area, city, pincode">
+          </div>
+
+          <div class="field md:col-span-2">
+            <label class="field-label" for="po-notes">Special requests</label>
+            <textarea id="po-notes" name="notes" rows="3" placeholder="Allergies, gift-wrap, handwritten card, dietary preferences…"></textarea>
+          </div>
+
+          <label class="md:col-span-2 flex items-start gap-2.5 text-sm" style="color:var(--muted)">
+            <input type="checkbox" id="po-consent" required class="mt-1">
+            <span>I'm okay being contacted on the details above. Confirmation by email + WhatsApp.</span>
+          </label>
+
+          <div class="md:col-span-2 flex flex-col-reverse sm:flex-row gap-3 sm:items-center sm:justify-between mt-2">
+            <p class="text-xs" style="color:var(--muted)">This opens your email app addressed to Gunjan, hit send to complete.</p>
+            <button type="submit" class="btn btn-primary btn-lg">Send the order</button>
+          </div>
+        </form>
+
+        <div id="po-success" class="hidden mt-8 p-6 rounded-2xl text-center" style="background:var(--cream)">
+          <div class="text-5xl">📬</div>
+          <h3 class="serif text-2xl mt-3" style="color:var(--cocoa)">Heading to Gunjan's inbox.</h3>
+          <p class="mt-2" style="color:var(--muted)">Your email app opened with the order pre-composed, hit <strong style="color:var(--cocoa)">send</strong> and you're done. She'll WhatsApp you to confirm within a few hours.</p>
+          <a id="po-wa-after" href="#" target="_blank" rel="noopener" class="btn btn-gold mt-5">Or WhatsApp now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // WhatsApp shortcut links
+      const wa = window.whatsappLink("Hi Gunjan! I'd like to place an order:");
+      document.getElementById("po-wa").href = wa;
+      document.getElementById("po-wa-after").href = wa;
+
+      // Date min: today
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("po-date").min = today;
+
+      // Wire the form
+      const form = document.getElementById("order-form");
+      window.ChocoForms.wire(form, "New order, quick form", () => {
+        form.classList.add("hidden");
+        document.getElementById("po-success").classList.remove("hidden");
+        window.scrollTo({ top: form.offsetTop - 80, behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>

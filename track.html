@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track your order, TheChocoBot</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/track.html">
+  <meta property="og:url" content="https://www.thechocobot.com/track.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="Where's my order? See where it is from oven to your door.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <section class="hero hero-stage" data-beans="6">
+    <div class="container-narrow pt-12 pb-8 md:pt-16 md:pb-10">
+      <p data-enter="1" class="eyebrow"><span class="rule"></span>Order tracker</p>
+      <h1 data-enter="2" class="section-title-xl mt-4">
+        Where is<br><em>my tin?</em>
+      </h1>
+      <p data-enter="3" class="mt-5 text-lg" style="color:var(--muted);max-width:36rem;line-height:1.6">
+        Punch in your order ID and I'll show you exactly where your box is on its way to you.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container-narrow">
+
+      <!-- Lookup form -->
+      <form id="track-form" class="reveal flex flex-col sm:flex-row gap-3 mb-8" novalidate>
+        <input id="track-input" type="text" placeholder="Order ID (e.g. CBOT-MEG3K9PA)" required
+          class="flex-1 px-4 py-3 bg-white border-2 rounded-full text-base focus:outline-none uppercase tracking-wider"
+          style="border-color:var(--line);color:var(--charcoal);font-family:monospace">
+        <button type="submit" class="btn btn-primary">Look it up</button>
+      </form>
+
+      <p id="track-error" class="hidden text-sm mb-6" style="color:#c44"></p>
+
+      <!-- Order details card -->
+      <div id="track-card" class="hidden reveal">
+        <div class="order-track-card">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-2">
+            <div>
+              <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Order</p>
+              <p class="serif text-2xl mt-1" style="color:var(--cocoa)" id="track-id"></p>
+            </div>
+            <div class="text-sm" style="color:var(--muted)">
+              <p>Placed <span id="track-placed" style="color:var(--cocoa);font-weight:500"></span></p>
+              <p>For <span id="track-name" style="color:var(--cocoa);font-weight:500"></span></p>
+            </div>
+          </div>
+
+          <!-- Steps -->
+          <div class="track-steps" id="track-steps">
+            <div class="track-step" data-step="0">
+              <div class="track-dot">📝</div>
+              <p class="track-step-label">Order received</p>
+              <p class="track-step-time"></p>
+            </div>
+            <div class="track-step" data-step="1">
+              <div class="track-dot">👩‍🍳</div>
+              <p class="track-step-label">Baking</p>
+              <p class="track-step-time"></p>
+            </div>
+            <div class="track-step" data-step="2">
+              <div class="track-dot">🎀</div>
+              <p class="track-step-label">Packing</p>
+              <p class="track-step-time"></p>
+            </div>
+            <div class="track-step" data-step="3">
+              <div class="track-dot">🛵</div>
+              <p class="track-step-label">Out for delivery</p>
+              <p class="track-step-time"></p>
+            </div>
+            <div class="track-step" data-step="4">
+              <div class="track-dot">🍪</div>
+              <p class="track-step-label">Delivered</p>
+              <p class="track-step-time"></p>
+            </div>
+          </div>
+
+          <!-- Items + total -->
+          <div class="mt-6 pt-6" style="border-top:1px solid var(--line)">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div>
+                <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">In the box</p>
+                <p class="mt-1" style="color:var(--cocoa)" id="track-items"></p>
+              </div>
+              <div class="md:text-right">
+                <p class="text-[10px] tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Total</p>
+                <p class="serif text-2xl mt-1" style="color:var(--cocoa)" id="track-total"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Help -->
+          <div class="mt-6 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between" style="border-top:1px solid var(--line)">
+            <p class="text-sm" style="color:var(--muted)">Need to update something? Gunjan can fix anything before "Out for delivery".</p>
+            <a id="track-wa" href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-sm whitespace-nowrap">WhatsApp Gunjan</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty / first-visit state -->
+      <div id="track-empty" class="reveal text-center py-12" style="background:var(--cream);border-radius:24px">
+        <p class="text-5xl">📦</p>
+        <p class="serif text-2xl mt-3" style="color:var(--cocoa)">No order looked up yet.</p>
+        <p class="mt-2 text-sm" style="color:var(--muted);max-width:32rem;margin:0.5rem auto 0;line-height:1.55">
+          Paste your order ID above. It's in the confirmation email and starts with <strong style="font-family:monospace">CBOT-</strong>.
+        </p>
+        <a id="track-demo" href="#" class="btn btn-gold btn-sm mt-5">See a sample order</a>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("track-form");
+      const input = document.getElementById("track-input");
+      const card = document.getElementById("track-card");
+      const empty = document.getElementById("track-empty");
+      const error = document.getElementById("track-error");
+
+      function fmtRupees(n) {
+        return new Intl.NumberFormat("en-IN", { style:"currency", currency:"INR", maximumFractionDigits:0 }).format(n);
+      }
+      function fmtDate(iso) {
+        if (!iso) return "—";
+        const d = new Date(iso);
+        return d.toLocaleString("en-IN", { day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit" });
+      }
+
+      // Stages elapse over the order's lifetime. Tweak when wiring real backend.
+      const STAGE_OFFSETS_MIN = [0, 60, 240, 600, 1440]; // 0m, 1h, 4h, 10h, 24h
+      function currentStage(placedISO) {
+        const ms = Date.now() - new Date(placedISO).getTime();
+        const mins = ms / 60000;
+        for (let i = STAGE_OFFSETS_MIN.length - 1; i >= 0; i--) {
+          if (mins >= STAGE_OFFSETS_MIN[i]) return i;
+        }
+        return 0;
+      }
+      function stageTime(placedISO, idx) {
+        if (!placedISO) return "";
+        const d = new Date(new Date(placedISO).getTime() + STAGE_OFFSETS_MIN[idx] * 60000);
+        return d.toLocaleString("en-IN", { day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit" });
+      }
+
+      function renderOrder(order) {
+        empty.classList.add("hidden");
+        error.classList.add("hidden");
+        card.classList.remove("hidden");
+
+        document.getElementById("track-id").textContent = order.order_id;
+        document.getElementById("track-placed").textContent = fmtDate(order.created_at);
+        document.getElementById("track-name").textContent = order.name || "—";
+
+        // Items
+        const items = (order.items || []).map(i => {
+          const p = window.findProduct(i.id);
+          return `${p ? p.name : i.id} × ${i.qty}`;
+        }).join(", ");
+        document.getElementById("track-items").textContent = items || "—";
+        document.getElementById("track-total").textContent = fmtRupees(order.amount || order.total || 0);
+
+        // WhatsApp
+        document.getElementById("track-wa").href = window.whatsappLink(
+          `Hi Gunjan! Quick question about order ${order.order_id}.`
+        );
+
+        // Stage progression
+        const stage = currentStage(order.created_at);
+        document.querySelectorAll(".track-step").forEach((s, i) => {
+          s.classList.remove("is-done", "is-current");
+          if (i < stage) s.classList.add("is-done");
+          if (i === stage) s.classList.add("is-current");
+          s.querySelector(".track-step-time").textContent = i <= stage ? stageTime(order.created_at, i) : "";
+        });
+      }
+
+      function lookup(id) {
+        const orders = JSON.parse(localStorage.getItem("chocobot.orders.v1") || "[]");
+        const order = orders.find(o => o.order_id === id);
+        if (!order) {
+          card.classList.add("hidden");
+          empty.classList.add("hidden");
+          error.classList.remove("hidden");
+          error.textContent = `Couldn't find an order with ID "${id}". Double-check the spelling, or message Gunjan on WhatsApp.`;
+          return;
+        }
+        renderOrder(order);
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const id = input.value.trim().toUpperCase();
+        if (!id) return;
+        // Reflect canonical form
+        input.value = id;
+        history.replaceState(null, "", "?id=" + encodeURIComponent(id));
+        lookup(id);
+      });
+
+      // Demo: synthesise a sample order so visitors can see the experience
+      document.getElementById("track-demo").addEventListener("click", (e) => {
+        e.preventDefault();
+        const placed = new Date(Date.now() - 90 * 60000).toISOString(); // 90 min ago = mid-Bake
+        const sample = {
+          order_id: "CBOT-DEMO-007",
+          name: "Priya M.",
+          created_at: placed,
+          amount: 1850,
+          items: [{ id: "viral-cookie-tin-7", qty: 1 }]
+        };
+        renderOrder(sample);
+      });
+
+      // Auto-lookup from URL ?id=
+      const urlId = new URLSearchParams(location.search).get("id");
+      if (urlId) {
+        input.value = urlId.toUpperCase();
+        lookup(input.value);
+      }
+    });
+  </script>
+</body>
+</html>

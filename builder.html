@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Own Cookie Tin, TheChocoBot by Gunjan Chopra</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/builder.html">
+  <meta property="og:url" content="https://www.thechocobot.com/builder.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="Pick four cookies. Watch the tin fill up. Order. Eggless, baked the night before yours.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero hero-stage" data-beans="6">
+    <div class="container-wide pt-12 pb-8 md:pt-16 md:pb-10 text-center">
+      <p data-enter="1" class="eyebrow justify-center"><span class="rule"></span>Build your own<span class="rule"></span></p>
+      <h1 data-enter="2" class="section-title-xl mt-4">
+        Pick four.<br>
+        <em>Fill the tin.</em>
+      </h1>
+      <p data-enter="3" class="mt-5 text-lg" style="color:var(--muted);max-width:38rem;margin:1.25rem auto 0;line-height:1.6">
+        Choose any four cookies from the studio. Watch the tin fill. Order, and I'll bake it tomorrow morning, ribbon and all.
+      </p>
+    </div>
+  </section>
+
+  <!-- BUILDER -->
+  <section class="section-tight">
+    <div class="container-wide">
+      <div class="builder-grid">
+
+        <!-- LEFT: tin preview -->
+        <div class="builder-preview">
+          <p class="text-[10px] tracking-[0.3em] uppercase font-semibold" style="color:var(--gold-dark)">Your tin · 5"</p>
+          <p class="serif mt-2" style="font-size:2rem;color:var(--cocoa);line-height:1">Hand-stacked.</p>
+
+          <div class="builder-tin" id="builder-tin">
+            <div class="builder-slot" data-slot="0">Slot 1</div>
+            <div class="builder-slot" data-slot="1">Slot 2</div>
+            <div class="builder-slot" data-slot="2">Slot 3</div>
+            <div class="builder-slot" data-slot="3">Slot 4</div>
+          </div>
+
+          <div class="builder-summary">
+            <p class="text-xs tracking-[0.22em] uppercase font-semibold" style="color:var(--gold-dark)">Tin total</p>
+            <p class="builder-total" id="builder-total">₹0</p>
+            <p class="text-sm mt-1" style="color:var(--muted)" id="builder-status">Pick 4 cookies to fill the tin.</p>
+
+            <button type="button" id="builder-order" class="btn btn-primary btn-lg mt-5 w-full" disabled>
+              Order this tin
+            </button>
+            <button type="button" id="builder-reset" class="btn btn-secondary btn-sm mt-2 w-full">
+              Start over
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: flavor picker -->
+        <div>
+          <p class="text-[10px] tracking-[0.3em] uppercase font-semibold" style="color:var(--gold-dark)">Pick your four</p>
+          <h2 class="serif mt-2" style="font-size:1.75rem;color:var(--cocoa);line-height:1.15">The flavour vault.</h2>
+          <p class="mt-2 text-sm" style="color:var(--muted)">Same flavour twice is fine. Variety welcome. All eggless.</p>
+
+          <div id="flavor-list" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+
+          <p class="mt-6 text-xs" style="color:var(--muted);line-height:1.55">
+            Tin includes a satin ribbon &amp; a handwritten note. Pan-India shipping available. Same-day in Delhi NCR if ordered before 4pm.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIRAL TIN COMPARISON -->
+  <section class="section-tight" style="background:var(--cream)">
+    <div class="container-narrow text-center reveal">
+      <p class="eyebrow justify-center"><span class="rule"></span>Or<span class="rule"></span></p>
+      <h2 class="section-title-xl mt-4">Skip the picking.</h2>
+      <p class="mt-4 text-lg" style="color:var(--muted);line-height:1.6;max-width:34rem;margin:1rem auto 0">
+        The viral 7" tin is pre-built: Nutella, dark chocolate, milk chocolate, in a bigger size, for ₹1,350.
+      </p>
+      <a href="product.html?id=viral-cookie-tin-7" class="btn btn-primary btn-lg mt-6">Order the Viral 7" Tin</a>
+    </div>
+  </section>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // The flavour options available in the builder.
+      // Each entry: id (matches product.id), emoji, blurb, price contribution
+      const FLAVOURS = [
+        { id: "triple-chocolate",  name: "Triple Chocolate",   emoji: "🍫", desc: "Milk + dark + white", price: 200 },
+        { id: "milk-chocolate",    name: "Milk Chocolate",     emoji: "🥛", desc: "The classic",           price: 200 },
+        { id: "double-chocolate",  name: "Double Chocolate",   emoji: "🌰", desc: "Cocoa-rich, fudgy",     price: 200 },
+        { id: "new-york",          name: "New York",           emoji: "🗽", desc: "Thick, chewy",          price: 210 },
+        { id: "biscoff",           name: "Biscoff",            emoji: "🍪", desc: "Caramelised, cinnamon", price: 215 },
+        { id: "nutella-core",      name: "Nutella Core",       emoji: "🍫", desc: "Molten centre",         price: 220 },
+        { id: "white-chocolate",   name: "White Chocolate",    emoji: "🤍", desc: "Sweet, soft-centred",   price: 200 }
+      ];
+
+      const BASE_PRICE = 0;       // No base, you only pay for what you pick
+      const TIN_SIZE = 4;          // Always 4 cookies in a 5" tin
+      const slots = [null, null, null, null];
+
+      const slotEls   = document.querySelectorAll(".builder-slot");
+      const totalEl   = document.getElementById("builder-total");
+      const statusEl  = document.getElementById("builder-status");
+      const orderBtn  = document.getElementById("builder-order");
+      const resetBtn  = document.getElementById("builder-reset");
+      const listEl    = document.getElementById("flavor-list");
+
+      // Render flavour cards
+      listEl.innerHTML = FLAVOURS.map(f => `
+        <button type="button" class="builder-flavor-card" data-id="${f.id}">
+          <span class="flavor-emoji">${f.emoji}</span>
+          <span class="flavor-info">
+            <span class="flavor-name">${f.name}</span>
+            <span class="flavor-desc">${f.desc} · ₹${f.price}</span>
+          </span>
+          <span class="flavor-check">✓</span>
+        </button>
+      `).join("");
+
+      function getNextEmptySlot() {
+        return slots.findIndex(s => s === null);
+      }
+
+      function totalPrice() {
+        return slots.reduce((sum, id) => {
+          if (!id) return sum;
+          const f = FLAVOURS.find(x => x.id === id);
+          return sum + (f ? f.price : 0);
+        }, BASE_PRICE);
+      }
+
+      function filledCount() { return slots.filter(s => s !== null).length; }
+
+      function render() {
+        // Update slots
+        slots.forEach((id, i) => {
+          const el = slotEls[i];
+          if (id) {
+            const f = FLAVOURS.find(x => x.id === id);
+            el.classList.add("is-filled");
+            el.textContent = f.name;
+          } else {
+            el.classList.remove("is-filled");
+            el.textContent = `Slot ${i + 1}`;
+          }
+        });
+
+        // Update price + status
+        const total = totalPrice();
+        const filled = filledCount();
+        totalEl.textContent = "₹" + total.toLocaleString("en-IN");
+
+        if (filled === 0) {
+          statusEl.textContent = "Pick 4 cookies to fill the tin.";
+        } else if (filled < TIN_SIZE) {
+          statusEl.textContent = `${TIN_SIZE - filled} more to go.`;
+        } else {
+          statusEl.textContent = "Ready to ribbon.";
+        }
+        orderBtn.disabled = filled < TIN_SIZE;
+        orderBtn.classList.toggle("opacity-50", filled < TIN_SIZE);
+
+        // Update flavour card states
+        document.querySelectorAll(".builder-flavor-card").forEach(card => {
+          const id = card.dataset.id;
+          const inSlots = slots.includes(id);
+          card.classList.toggle("is-selected", inSlots);
+        });
+      }
+
+      // Clicking a flavour fills the next empty slot, OR clears if already in all slots (toggle off-style)
+      listEl.addEventListener("click", (e) => {
+        const card = e.target.closest(".builder-flavor-card");
+        if (!card) return;
+        const id = card.dataset.id;
+        const next = getNextEmptySlot();
+        if (next === -1) {
+          // Tin is full — replace the oldest slot (or refuse)
+          // Behaviour: shift left, drop oldest, append new
+          slots.shift();
+          slots.push(id);
+        } else {
+          slots[next] = id;
+        }
+        render();
+
+        // Tiny confetti from the card position
+        const r = card.getBoundingClientRect();
+        if (window.burstSprinkles) window.burstSprinkles(r.left + r.width/2, r.top + r.height/2, 12);
+      });
+
+      // Clicking a filled slot removes that one cookie
+      slotEls.forEach(el => {
+        el.addEventListener("click", () => {
+          const i = parseInt(el.dataset.slot, 10);
+          if (slots[i]) {
+            slots[i] = null;
+            render();
+          }
+        });
+      });
+
+      // Reset
+      resetBtn.addEventListener("click", () => {
+        for (let i = 0; i < slots.length; i++) slots[i] = null;
+        render();
+      });
+
+      // Order the custom tin — adds to cart as a single line item with metadata
+      orderBtn.addEventListener("click", () => {
+        if (filledCount() < TIN_SIZE) return;
+        const flavourNames = slots
+          .map(id => FLAVOURS.find(x => x.id === id)?.name)
+          .filter(Boolean)
+          .join(", ");
+        const total = totalPrice();
+
+        // Compose a one-off product entry on the fly + push to cart
+        const customId = "custom-tin-" + Date.now().toString(36);
+        const customProduct = {
+          id: customId,
+          name: `Custom Cookie Tin · 5"`,
+          category: "signature",
+          description: flavourNames,
+          long_description: `A custom-built 5\" cookie tin: ${flavourNames}. Hand-stacked the morning of dispatch.`,
+          ingredients: "Varies by selection. All eggless.",
+          allergens: ["dairy", "gluten", "nuts"],
+          price: total,
+          weight: "5\" tin · 4 cookies",
+          shipping_zone: "pan_india",
+          image: "images/products/signature/cookie-dough-tin.jpg",
+          bestseller: false,
+          in_stock: true,
+          eggless: true,
+          custom_build: true,
+          slots: slots.slice()
+        };
+        // Append to PRODUCTS so cart can resolve it
+        window.PRODUCTS.push(customProduct);
+        window.Cart.add(customId, 1);
+        window.openCart();
+      });
+
+      render();
+    });
+  </script>
+</body>
+</html>

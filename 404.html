@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost the recipe, TheChocoBot</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/404.html">
+  <meta property="og:url" content="https://www.thechocobot.com/404.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="Looks like this page didn't make it out of the oven.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <main class="error-page">
+    <div class="container-narrow">
+      <p class="eyebrow justify-center"><span class="rule"></span>Vol. 404 · A small detour<span class="rule"></span></p>
+      <p class="error-number">
+        4<span class="crumb">🍪</span>4
+      </p>
+      <h1 class="serif" style="font-size:clamp(1.85rem,4vw,2.75rem);color:var(--cocoa);line-height:1.15;max-width:32rem;margin:0 auto">
+        This page <em class="italic-serif" style="color:var(--gold-dark)">didn't make it</em> out of the oven.
+      </h1>
+      <p class="mt-5 text-lg" style="color:var(--muted);max-width:32rem;margin-left:auto;margin-right:auto;line-height:1.55">
+        Either we burned the URL, or you took a delicious wrong turn. Both are forgivable. Let me point you somewhere nicer.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="index.html" class="btn btn-primary btn-lg">Back to home</a>
+        <a href="menu.html" class="btn btn-secondary btn-lg">Browse the menu</a>
+        <a href="place-order.html" class="btn btn-gold btn-lg">Place an order</a>
+      </div>
+      <p class="mt-10 serif italic" style="color:var(--gold-dark)">
+        Or, if you're sure something's broken, <a id="four-wa" href="#" target="_blank" rel="noopener" class="underline" style="color:var(--cocoa)">message Gunjan on WhatsApp</a> and she'll have a look.
+      </p>
+    </div>
+  </main>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("four-wa").href = window.whatsappLink("Hi Gunjan! I hit a 404 on your site, page:" + " " + location.href);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ, The ChocoBot</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/faq.html">
+  <meta property="og:url" content="https://www.thechocobot.com/faq.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="Eggless, shipping, allergens, custom orders, payments, the questions Gunjan gets most.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .faq-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; transition: border-color 0.3s; }
+    .faq-item[open] { border-color: var(--gold); }
+    .faq-item summary {
+      cursor: pointer; list-style: none;
+      padding: 1.1rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-family: var(--serif); font-size: 1.1rem; color: var(--cocoa);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary .icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border-radius: 50%; background: var(--cream); color: var(--cocoa);
+      display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease);
+    }
+    .faq-item[open] summary .icon { transform: rotate(45deg); background: var(--gold); }
+    .faq-body { padding: 0 1.25rem 1.25rem; color: var(--muted); line-height: 1.7; font-size: 0.97rem; }
+    .faq-body p + p { margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <section class="hero hero-stage" data-beans="6">
+    <div class="container-narrow pt-12 pb-10 md:pt-20 md:pb-12">
+      <p data-enter="1" class="eyebrow"><span class="rule"></span>Notes · FAQ</p>
+      <h1 data-enter="2" class="section-title-xl mt-4">
+        The questions<br>
+        <em>I get most.</em>
+      </h1>
+      <p data-enter="3" class="mt-5 text-lg" style="color:var(--muted);line-height:1.55">
+        Can't find your answer? <a id="faq-wa" href="#" target="_blank" rel="noopener" class="underline" style="color:var(--cocoa)">WhatsApp Gunjan →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container-narrow">
+
+      <h2 id="eggless" class="serif text-2xl md:text-3xl mt-4 mb-5 reveal" style="color:var(--cocoa)">🥚 Eggless, always</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>Is every product really eggless? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Yes, every single thing. Cookies, cakes, cupcakes, brownies, loaves, hampers, all of it. This isn't a workaround. It's a decade of technique built specifically for eggless baking, proper crumb, proper rise, proper tenderness.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do you replace eggs without it tasting "off"? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Different binders for different jobs: yogurt, buttermilk, condensed milk, banana, aquafaba, flax. The trick isn't the substitute, it's the technique. Long cold rests, slower hydration, different fat ratios. You'll taste butter and chocolate, not a workaround.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why eggless? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Gunjan grew up in a vegetarian household where good dessert was hard to find. So she set out to make the dessert <em>she</em> would have wanted, without the egg, without the apology.</p></div>
+        </details>
+      </div>
+
+      <h2 id="shipping" class="serif text-2xl md:text-3xl mt-12 mb-5 reveal" style="color:var(--cocoa)">📦 Shipping &amp; delivery</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>What ships pan-India? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Cookies, brownies, loaves, and hampers. Vacuum-sealed, ice-pack lined in summer, reaches most metros in 3–5 days.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What's Delhi NCR only? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Fresh items, cakes, cupcakes, anything with cream or refrigerated frosting. These deliver same-day or next-day inside Delhi NCR.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Pickup? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Yes, by appointment, at the Vikaspuri studio. Drop a WhatsApp once your order's confirmed and I'll share the address.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>If something arrives damaged? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>It shouldn't, I overpack everything. But if it does, send a photo within 24 hours and I'll resend or refund. No fuss.</p></div>
+        </details>
+      </div>
+
+      <h2 id="storage" class="serif text-2xl md:text-3xl mt-12 mb-5 reveal" style="color:var(--cocoa)">🧊 Storage &amp; shelf life</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>Cookies? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>5 days in an airtight container. Pop them in the microwave for 8 seconds to revive that just-baked feel.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Brownies and loaves? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Brownies: 5 days refrigerated. Loaves: 5 days at room temperature.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Cakes &amp; cupcakes? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>2–3 days refrigerated. Take them out 15–20 minutes before serving so the texture relaxes.</p></div>
+        </details>
+      </div>
+
+      <h2 id="allergens" class="serif text-2xl md:text-3xl mt-12 mb-5 reveal" style="color:var(--cocoa)">🥜 Allergens</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>Vegan options? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Many things can be adapted vegan, the Banana Walnut Loaf and Classic Choco Chip are easiest. WhatsApp before ordering and I'll let you know what's possible.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Nut allergies? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Most products contain nuts or are made in a kitchen where nuts are used. Each product page lists allergens. For severe allergies, please WhatsApp first, I'll be honest about what's safe and what isn't.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Gluten-free? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Limited gluten-free options on special order, the brownies and chocolate truffle cake can be adapted. 5 days notice, custom price.</p></div>
+        </details>
+      </div>
+
+      <h2 id="custom" class="serif text-2xl md:text-3xl mt-12 mb-5 reveal" style="color:var(--cocoa)">🎂 Custom orders</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>How much notice for a custom cake? <span class="icon">+</span></summary>
+          <div class="faq-body"><p><strong style="color:var(--cocoa)">Celebration cakes:</strong> Minimum 5 days. <strong style="color:var(--cocoa)">Bulk corporate / wedding favours:</strong> 7–10 days. If you're in a rush, WhatsApp me, sometimes I can squeeze it in.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Corporate gifting? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Minimum 10 hampers or ₹15,000 order value. GST invoice provided. Logo chocolates and custom branding available with 10 days notice.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Classes? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Yes, small-group classes at the Vikaspuri studio. See <a href="classes.html" class="underline" style="color:var(--cocoa)">The Studio</a> for upcoming dates and topics.</p></div>
+        </details>
+      </div>
+
+      <h2 id="payment" class="serif text-2xl md:text-3xl mt-12 mb-5 reveal" style="color:var(--cocoa)">💳 Payment</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>What payment methods? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>UPI, debit/credit cards, and netbanking via Razorpay. Bank transfer / NEFT for bulk and custom orders above ₹10,000.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Welcome offer? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>10% off your first order when you join the Inner Circle (the little popup that says hi). Auto-applied at checkout.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>GST invoice? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>Yes, for corporate orders. Mention it in the order notes.</p></div>
+        </details>
+      </div>
+
+      <h2 id="privacy" class="serif text-2xl md:text-3xl mt-12 mb-5 reveal" style="color:var(--cocoa)">🔒 Privacy &amp; Terms</h2>
+      <div class="space-y-3 reveal-stagger">
+        <details class="faq-item">
+          <summary>What do you do with my data? <span class="icon">+</span></summary>
+          <div class="faq-body"><p>I keep your name, phone, email and delivery address only to fulfil your order and (if you opt in) send Inner Circle letters. I don't sell or share your data. Unsubscribe anytime.</p></div>
+        </details>
+        <details class="faq-item" id="terms">
+          <summary>Terms <span class="icon">+</span></summary>
+          <div class="faq-body"><p>All sales final once dispatched, except in case of transit damage. Custom orders are non-refundable once production has started. Photos shared with you remain your property; please credit @the_choco_bot if you post.</p></div>
+        </details>
+        <details class="faq-item" id="refunds">
+          <summary>Refunds <span class="icon">+</span></summary>
+          <div class="faq-body"><p>If something arrives damaged or wrong, share a photo within 24 hours and I'll either resend the same day (Delhi NCR) or refund in full (pan-India). Refunds processed in 3–5 business days back to original payment method.</p></div>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-tight" style="background:var(--cream)">
+    <div class="container-narrow text-center reveal">
+      <h2 class="serif text-2xl md:text-3xl" style="color:var(--cocoa)">Still curious?</h2>
+      <p class="mt-2" style="color:var(--muted)">WhatsApp is fastest. I usually reply within an hour.</p>
+      <a id="faq-wa-2" href="#" target="_blank" rel="noopener" class="btn btn-gold mt-5">Message Gunjan</a>
+    </div>
+  </section>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const link = window.whatsappLink("Hi Gunjan! A question that wasn't in the FAQ:");
+      document.getElementById("faq-wa").href = link;
+      document.getElementById("faq-wa-2").href = link;
+    });
+  </script>
+</body>
+</html>

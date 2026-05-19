@@ -1,0 +1,31 @@
+# TheChocoBot, Netlify rewrite & redirect rules
+
+# Force www (so thechocobot.com → www.thechocobot.com, preserves the canonical domain)
+https://thechocobot.com/*    https://www.thechocobot.com/:splat   301!
+
+# Pretty URLs: /menu redirects to /menu.html
+/menu               /menu.html               200
+/about              /about.html              200
+/contact            /contact.html            200
+/checkout           /checkout.html           200
+/classes            /classes.html            200
+/events            /events.html              200
+/custom-orders      /custom-orders.html      200
+/inner-circle       /inner-circle.html       200
+/blog               /blog.html               200
+/recipes            /recipes.html            200
+/builder            /builder.html            200
+/place-order        /place-order.html        200
+/track              /track.html              200
+/faq                /faq.html                200
+/our-story          /about.html              301
+/the-studio         /classes.html            301
+/the-atelier        /events.html             301
+/reach              /contact.html            301
+/menu/*             /product.html?id=:splat  200
+
+# Block admin from being crawled by humans without the URL
+/admin              /admin.html              200
+
+# Anything else → custom 404
+/*                  /404.html                404

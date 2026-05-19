@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout, The ChocoBot</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta property="og:site_name" content="TheChocoBot by Gunjan Chopra">
+  <link rel="canonical" href="https://www.thechocobot.com/checkout.html">
+  <meta property="og:url" content="https://www.thechocobot.com/checkout.html">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@the_choco_bot">
+  <meta name="description" content="Checkout. UPI, cards, netbanking via Razorpay.">
+  <meta name="theme-color" content="#3D2817">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+  <section class="hero hero-stage">
+    <div class="container-wide pt-10 pb-6 md:pt-14 md:pb-8">
+      <p data-enter="1" class="eyebrow"><span class="rule"></span>Checkout · Vol. III</p>
+      <h1 data-enter="2" class="serif mt-3" style="font-size: clamp(1.85rem, 4vw, 2.75rem); color:var(--cocoa); line-height: 1.1">
+        Almost there.
+      </h1>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container-wide">
+
+      <div id="empty-state" class="hidden text-center py-20">
+        <p class="text-[10px] tracking-[0.25em] uppercase" style="color:var(--gold-dark)">The selection is empty —</p>
+        <p class="serif text-3xl mt-3" style="color:var(--cocoa)">Pick something first.</p>
+        <a href="menu.html" class="btn btn-primary mt-5">Back to the menu</a>
+      </div>
+
+      <div id="checkout-grid" class="hidden grid lg:grid-cols-5 gap-8">
+
+        <!-- LEFT: form -->
+        <form id="checkout-form" class="lg:col-span-3 space-y-6 reveal" novalidate>
+
+          <div class="bg-white rounded-2xl p-6 md:p-8" style="border:1px solid var(--line)">
+            <h2 class="serif text-2xl" style="color:var(--cocoa)">Who's it for?</h2>
+            <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="field">
+                <label class="field-label" for="co-name">Full name <span class="req">*</span></label>
+                <input id="co-name" name="name" type="text" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label class="field-label" for="co-phone">Phone <span class="req">*</span></label>
+                <input id="co-phone" name="phone" type="tel" required pattern="[0-9+\-\s]{7,15}" autocomplete="tel">
+              </div>
+              <div class="field md:col-span-2">
+                <label class="field-label" for="co-email">Email <span class="req">*</span></label>
+                <input id="co-email" name="email" type="email" required autocomplete="email">
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 md:p-8" style="border:1px solid var(--line)">
+            <h2 class="serif text-2xl" style="color:var(--cocoa)">Deliver to</h2>
+            <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="field md:col-span-2">
+                <label class="field-label" for="co-address1">Address <span class="req">*</span></label>
+                <input id="co-address1" name="address1" type="text" required autocomplete="street-address">
+              </div>
+              <div class="field md:col-span-2">
+                <label class="field-label" for="co-landmark">Landmark</label>
+                <input id="co-landmark" name="landmark" type="text">
+              </div>
+              <div class="field">
+                <label class="field-label" for="co-city">City <span class="req">*</span></label>
+                <input id="co-city" name="city" type="text" required>
+              </div>
+              <div class="field">
+                <label class="field-label" for="co-state">State <span class="req">*</span></label>
+                <input id="co-state" name="state" type="text" required>
+              </div>
+              <div class="field">
+                <label class="field-label" for="co-pincode">Pincode <span class="req">*</span></label>
+                <input id="co-pincode" name="pincode" type="text" inputmode="numeric" pattern="\d{6}" maxlength="6" required>
+                <p id="pin-msg" class="text-xs mt-1"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="co-instructions">Delivery instructions</label>
+                <input id="co-instructions" name="instructions" type="text" placeholder="Leave with guard…">
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 md:p-8" style="border:1px solid var(--line)">
+            <h2 class="serif text-2xl" style="color:var(--cocoa)">Discount</h2>
+            <div class="mt-3 flex flex-col sm:flex-row gap-3">
+              <input id="co-code" type="text" placeholder="Enter code (e.g. CHOCO123)"
+                style="flex:1;padding:0.85rem 1rem;background:#fff;border:1.5px solid var(--line);border-radius:12px;font-size:0.95rem;color:var(--charcoal)">
+              <button type="button" id="apply-code" class="btn btn-secondary">Apply</button>
+            </div>
+            <p id="code-msg" class="text-xs mt-2"></p>
+            <p id="auto-code" class="hidden mt-3 text-sm p-3 rounded-lg" style="background:rgba(201, 169, 110, 0.15);color:var(--cocoa)"></p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 md:p-8" style="border:1px solid var(--line)">
+            <h2 class="serif text-2xl" style="color:var(--cocoa)">Payment</h2>
+            <p class="mt-2 text-sm" style="color:var(--muted)">Secure via Razorpay. UPI, cards, netbanking.</p>
+            <div class="mt-4 flex flex-wrap items-center gap-2">
+              <div class="px-3 py-2 bg-[var(--cream)] rounded-lg text-xs font-medium" style="color:var(--cocoa)">UPI</div>
+              <div class="px-3 py-2 bg-[var(--cream)] rounded-lg text-xs font-medium" style="color:var(--cocoa)">Cards</div>
+              <div class="px-3 py-2 bg-[var(--cream)] rounded-lg text-xs font-medium" style="color:var(--cocoa)">Netbanking</div>
+              <div class="px-3 py-2 bg-[var(--cream)] rounded-lg text-xs font-medium" style="color:var(--cocoa)">Wallets</div>
+            </div>
+            <label class="mt-5 flex items-start gap-2.5 text-sm" style="color:var(--muted)">
+              <input type="checkbox" id="co-terms" class="mt-1" required>
+              <span>I've read the shipping &amp; refund info. <a href="faq.html" class="underline" style="color:var(--cocoa)">FAQ →</a></span>
+            </label>
+          </div>
+
+          <button type="submit" id="pay-btn" class="btn btn-primary btn-lg w-full md:w-auto">
+            <span id="pay-label">Pay &amp; place order</span>
+          </button>
+          <p class="text-xs" style="color:var(--muted)">Confirmation by email + WhatsApp.</p>
+        </form>
+
+        <!-- RIGHT: summary -->
+        <aside class="lg:col-span-2 reveal">
+          <div class="bg-white rounded-2xl p-6 md:p-8 lg:sticky lg:top-24" style="border:1px solid var(--line)">
+            <h2 class="serif text-2xl" style="color:var(--cocoa)">Your order</h2>
+            <div id="summary-lines" class="mt-4 space-y-3 max-h-72 overflow-y-auto"></div>
+            <div class="mt-5 pt-5 space-y-2 text-sm" style="border-top:1px solid var(--line); color:var(--muted)">
+              <div class="flex justify-between"><span>Subtotal</span><span id="sum-subtotal" style="color:var(--cocoa);font-weight:500"></span></div>
+              <div id="discount-row" class="hidden flex justify-between"><span id="discount-label">Welcome offer</span><span id="sum-discount" style="color:#2c6e49;font-weight:500"></span></div>
+              <div class="flex justify-between"><span>Shipping</span><span id="sum-shipping" style="color:var(--cocoa);font-weight:500">-</span></div>
+              <div class="flex justify-between text-base mt-3 pt-3" style="border-top:1px solid var(--line);color:var(--cocoa);font-weight:600;font-size:1.05rem">
+                <span>Total</span><span id="sum-total"></span>
+              </div>
+            </div>
+            <div id="ship-warning" class="hidden mt-4 text-xs p-3 rounded-lg" style="background:var(--blush);color:#8a4848"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS MODAL -->
+  <div id="success-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4" style="background:rgba(42,31,24,0.55)">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center" style="box-shadow:0 25px 50px rgba(0,0,0,0.25)">
+      <div class="text-6xl">🎀</div>
+      <h3 class="serif text-3xl mt-3" style="color:var(--cocoa)">Order placed.</h3>
+      <p class="mt-2" style="color:var(--muted)">Order ID: <strong id="ord-id" style="font-family:monospace;color:var(--cocoa)"></strong>. I'll start baking. You'll get a WhatsApp + email update.</p>
+      <div class="mt-6 flex flex-col gap-2">
+        <a href="index.html" class="btn btn-primary">Back to home</a>
+        <button type="button" id="success-close" class="btn btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/pincode.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/welcome.js"></script>
+  <script src="js/whimsy.js"></script>
+  <script src="js/razorpay-checkout.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = window.Cart.items();
+      if (items.length === 0) {
+        document.getElementById("empty-state").classList.remove("hidden");
+        return;
+      }
+      document.getElementById("checkout-grid").classList.remove("hidden");
+
+      // Discount state
+      let appliedCode = null;
+      let discountPercent = 0;
+
+      // Auto-apply welcome code if present
+      const wcode = window.getWelcomeCode && window.getWelcomeCode();
+      if (wcode) {
+        appliedCode = wcode;
+        discountPercent = 10;
+        document.getElementById("auto-code").classList.remove("hidden");
+        document.getElementById("auto-code").innerHTML = `✦ <strong style="font-family:monospace">${wcode}</strong> applied, 10% off your first order. Welcome to the Inner Circle.`;
+      }
+
+      // ---- Render summary ----
+      function renderSummary() {
+        const items = window.Cart.items();
+        const lines = document.getElementById("summary-lines");
+        lines.innerHTML = items.map(i => {
+          const p = window.findProduct(i.id);
+          if (!p) return "";
+          return `
+            <div class="flex gap-3 items-start">
+              <img src="${p.image}" alt="" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
+              <div class="flex-1 min-w-0">
+                <p class="serif text-sm" style="color:var(--cocoa)">${p.name}</p>
+                <p class="text-xs" style="color:var(--muted)">${p.weight} · Qty ${i.qty}</p>
+              </div>
+              <p class="text-sm font-semibold" style="color:var(--cocoa)">${window.formatPrice(p.price * i.qty)}</p>
+            </div>`;
+        }).join("");
+
+        const subtotal = window.Cart.subtotal();
+        const discount = Math.round(subtotal * discountPercent / 100);
+        const afterDisc = subtotal - discount;
+        const shipping = (afterDisc >= 2500) ? 0 : 150;
+        const total = afterDisc + shipping;
+
+        document.getElementById("sum-subtotal").textContent = window.formatPrice(subtotal);
+        document.getElementById("sum-shipping").textContent = shipping === 0 ? "Free" : window.formatPrice(shipping);
+        document.getElementById("sum-total").textContent = window.formatPrice(total);
+
+        const discountRow = document.getElementById("discount-row");
+        if (discount > 0) {
+          discountRow.classList.remove("hidden");
+          discountRow.classList.add("flex");
+          document.getElementById("discount-label").textContent = `Discount (${discountPercent}% · ${appliedCode})`;
+          document.getElementById("sum-discount").textContent = "− " + window.formatPrice(discount);
+        } else {
+          discountRow.classList.add("hidden");
+          discountRow.classList.remove("flex");
+        }
+        return { subtotal, discount, shipping, total };
+      }
+      let totals = renderSummary();
+      window.addEventListener("cart:change", () => { totals = renderSummary(); });
+
+      // ---- Discount manual apply ----
+      document.getElementById("apply-code").addEventListener("click", () => {
+        const code = document.getElementById("co-code").value.trim().toUpperCase();
+        const msg = document.getElementById("code-msg");
+        if (!code) {
+          msg.textContent = "Enter a code to apply."; msg.style.color = "#c44"; return;
+        }
+        // Accept welcome codes (CHOCO###) or specific promo codes
+        if (/^CHOCO\d{3}$/.test(code) && (!wcode || code === wcode)) {
+          appliedCode = code; discountPercent = 10;
+          msg.textContent = `✓ ${code} applied, 10% off.`; msg.style.color = "#2c6e49";
+        } else if (code === "FIRSTBOX") {
+          appliedCode = code; discountPercent = 10;
+          msg.textContent = "✓ FIRSTBOX applied, 10% off."; msg.style.color = "#2c6e49";
+        } else if (code === "EGGLESS20") {
+          appliedCode = code; discountPercent = 20;
+          msg.textContent = "✓ EGGLESS20 applied, 20% off."; msg.style.color = "#2c6e49";
+        } else {
+          msg.textContent = "That code isn't valid or has expired."; msg.style.color = "#c44";
+          return;
+        }
+        totals = renderSummary();
+      });
+
+      // ---- Pincode live check ----
+      const pinInput = document.getElementById("co-pincode");
+      const pinMsg = document.getElementById("pin-msg");
+      const shipWarn = document.getElementById("ship-warning");
+      pinInput.addEventListener("input", () => {
+        const v = pinInput.value.replace(/\D/g, "").slice(0, 6);
+        pinInput.value = v;
+        if (v.length !== 6) { pinMsg.textContent = ""; shipWarn.classList.add("hidden"); return; }
+        const check = window.Pincode.canShipCart(v, window.Cart);
+        if (check.ok) {
+          pinMsg.textContent = check.zone === "delhi_ncr"
+            ? "✓ Delhi NCR, we'll deliver everything fresh."
+            : "✓ We ship to your pincode.";
+          pinMsg.style.color = "#2c6e49"; shipWarn.classList.add("hidden");
+        } else {
+          pinMsg.textContent = ""; shipWarn.textContent = check.reason; shipWarn.classList.remove("hidden");
+        }
+      });
+
+      // ---- Submit ----
+      document.getElementById("checkout-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target).entries());
+        const required = ["name", "phone", "email", "address1", "city", "state", "pincode"];
+        for (const k of required) {
+          if (!data[k] || String(data[k]).trim() === "") { alert(`Please fill in: ${k}`); return; }
+        }
+        if (!document.getElementById("co-terms").checked) { alert("Please tick the agreement."); return; }
+        const check = window.Pincode.canShipCart(data.pincode, window.Cart);
+        if (!check.ok) { alert(check.reason); return; }
+
+        window.startRazorpayCheckout({
+          amount: totals.total,
+          customer: { name: data.name, email: data.email, phone: data.phone },
+          orderMeta: {
+            ...data,
+            items: window.Cart.items(),
+            subtotal: totals.subtotal,
+            discount: totals.discount,
+            discount_code: appliedCode,
+            shipping: totals.shipping,
+            total: totals.total
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
